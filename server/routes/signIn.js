@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: error.message });
     }
 
+    // Send session/user data back to the client for further use
     res.status(200).json({ message: "User signed in successfully", data });
   } catch (error) {
     console.error("Error during sign in:", error.message);

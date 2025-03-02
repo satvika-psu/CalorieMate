@@ -1,13 +1,15 @@
 // pages/Signup.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
+  //const [username, setUsername] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -19,8 +21,8 @@ export default function Signup() {
       });
 
       if (response.status === 200) {
-        // Redirect to sign-in page after successful signup
-        navigate("/");
+        setSuccessMessage("Signup successful! Please log in.");
+        navigate("/dashboard");
       }
     } catch (error) {
       setError(
@@ -29,34 +31,127 @@ export default function Signup() {
     }
   };
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    height: "100vh",
+    width: "100%",
+    //maxWidth: "400px",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+  };
+
+  const formStyle = {
+    padding: "3rem",
+    borderRadius: "10px",
+    //boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    maxWidth: "600px",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+  };
+
+  const headingStyle = {
+    fontFamily: "Poppins",
+    textAlign: "center",
+    fontSize: "2rem",
+    marginBottom: "2rem",
+    color: "White",
+  };
+
+  const inputStyle = {
+    width: "100%",
+    padding: "0.6rem",
+    margin: "0.8rem 0",
+    borderRadius: "4px",
+    border: "whitesmoke",
+    fontSize: "1rem",
+    fontFamily: "Poppins",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+  };
+  const buttonStyle = {
+    width: "100%",
+    padding: "0.8rem",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontFamily: "Poppins",
+  };
+
   return (
     <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have an account? <a href="/">Sign in</a>
-      </p>
+      <div style={containerStyle}>
+        <form style={formStyle} onSubmit={handleSignup}>
+          <h1 style={headingStyle}>Signup Today</h1>
+          {/*<div>
+            <label>Name:</label>
+            <input
+              type="text"
+              value={username}
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+              style={inputStyle}
+              required
+            />
+          </div>*/}
+          <div>
+            {/*<label>Email:</label>*/}
+            <input
+              type="email"
+              value={email}
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              style={inputStyle}
+              required
+            />
+          </div>
+          <div>
+            {/*<label>Password:</label>*/}
+            <input
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              style={inputStyle}
+              required
+            />
+          </div>
+
+          {error && (
+            <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+          )}
+          {successMessage && (
+            <p style={{ color: "green", textAlign: "center" }}>
+              {successMessage}
+            </p>
+          )}
+          <button type="submit" style={buttonStyle}>
+            Sign Up
+          </button>
+          <p style={{ fontFamily: "Poppins", color: "white", marginTop: 5 }}>
+            Already have an account?{""}
+            <Link
+              to="/"
+              style={{
+                fontFamily: "Poppins",
+                color: "purple",
+                textDecoration: "underline",
+                marginLeft: 5,
+                marginTop: 5,
+                fontSize: 16,
+              }}
+            >
+              Sign in
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

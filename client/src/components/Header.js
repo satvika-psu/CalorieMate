@@ -13,7 +13,7 @@ const Header = () => {
       }}
     >
       <Container>
-        <Navbar.Brand href="/" style={{ color: "white", fontWeight: "bold" }}>
+        <Navbar.Brand style={{ color: "white", fontWeight: "bold" }}>
           CALORIEMATE
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -21,20 +21,28 @@ const Header = () => {
           <Nav className="ms-auto">
             <Nav.Link
               as={Link}
-              to="/"
+              to="/dashboard"
               className="nav-link"
               style={{ color: "white", fontWeight: "bold" }}
             >
-              Login
+              Dashboard
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/Workout"
+              className="nav-link"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Workout
             </Nav.Link>
 
             <Nav.Link
               as={Link}
-              to="/home"
+              to="/signout"
               className="nav-link"
               style={{ color: "white", fontWeight: "bold" }}
             >
-              Home
+              Sign Out
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

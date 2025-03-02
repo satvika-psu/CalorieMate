@@ -1,9 +1,8 @@
-// pages/Signin.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Signin() {
+const Signin = ({ handleSignInSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,8 +18,8 @@ export default function Signin() {
       });
 
       if (response.status === 200) {
-        // Redirect to home page after successful sign-in
-        navigate("/home");
+        handleSignInSuccess();
+        navigate("/dashboard");
       }
     } catch (error) {
       setError(
@@ -28,35 +27,89 @@ export default function Signin() {
       );
     }
   };
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "10vh",
+    width: "150%",
+    maxWidth: "800px",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 0%)",
+  };
+  const formStyle = {
+    padding: "2rem",
+    borderRadius: "10px",
+    width: "100%",
+    maxWidth: "800px",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 40%)",
+  };
+
+  const headingStyle = {
+    fontFamily: "Poppins",
+    textAlign: "center",
+    fontSize: "20px",
+    marginBottom: "2rem",
+    color: "Purple",
+  };
+  const inputStyle = {
+    width: "100%",
+    padding: "0.6rem",
+    margin: "0.8rem 0",
+    borderRadius: "4px",
+    border: "whitesmoke",
+    fontSize: "1rem",
+    fontFamily: "Poppins",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+  };
+  const buttonStyle = {
+    width: "100%",
+    padding: "0.8rem",
+    background:
+      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontFamily: "Poppins",
+  };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={handleSignin}>
+    <div style={containerStyle}>
+      <form style={formStyle} onSubmit={handleSignin}>
+        <h1 style={headingStyle}>User Login</h1>
         <div>
-          <label>Email:</label>
+          {/*<label>Email:</label>*/}
           <input
             type="email"
             value={email}
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            style={inputStyle}
             required
           />
         </div>
         <div>
-          <label>Password:</label>
+          {/*<label>Password:</label>*/}
           <input
             type="password"
             value={password}
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            style={inputStyle}
             required
           />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Sign In</button>
+        {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+        <button type="submit" style={buttonStyle}>
+          Sign In
+        </button>
       </form>
-      <p>
-        Don't have an account? <a href="/signup">Sign up</a>
-      </p>
     </div>
   );
-}
+};
+
+export default Signin;
