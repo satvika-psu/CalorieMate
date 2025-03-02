@@ -14,17 +14,19 @@ import Signout from "./pages/Signout";
 import Dashboard from "./pages/Dashboard";
 import Page2 from "./pages/Page_2";
 import Workout from "./pages/Workout";
+import { UserProvider } from "./UserContext"; // Import the context
 
 function App() {
   const location = useLocation();
 
-  // Default Header for the these pages
+  // Default Header for these pages
   const isDefaultHeader = ["/", "/signin", "/signup"].includes(
     location.pathname
   );
 
   return (
     <div>
+      {/* Conditionally render Header based on the route */}
       {isDefaultHeader ? <Headerdefault /> : <Header />}
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -41,8 +43,12 @@ function App() {
 
 export default function Root() {
   return (
-    <Router>
-      <App />
-    </Router>
+    <UserProvider>
+      {" "}
+      {/* Wrap the entire app in UserProvider */}
+      <Router>
+        <App />
+      </Router>
+    </UserProvider>
   );
 }

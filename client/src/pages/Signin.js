@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../UserContext"; // Import UserContext
 
-const Signin = ({ handleSignInSuccess }) => {
+const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Get the context value to update the userEmail
+  const { setUserEmail } = useContext(UserContext);
 
   const handleSignin = async (e) => {
     e.preventDefault();
@@ -18,7 +22,8 @@ const Signin = ({ handleSignInSuccess }) => {
       });
 
       if (response.status === 200) {
-        handleSignInSuccess();
+        // Update the context with the signed-in user's email
+        setUserEmail(email);
         navigate("/dashboard");
       }
     } catch (error) {
@@ -27,6 +32,7 @@ const Signin = ({ handleSignInSuccess }) => {
       );
     }
   };
+
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
@@ -37,6 +43,7 @@ const Signin = ({ handleSignInSuccess }) => {
     background:
       "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 0%)",
   };
+
   const formStyle = {
     padding: "2rem",
     borderRadius: "10px",
@@ -53,6 +60,7 @@ const Signin = ({ handleSignInSuccess }) => {
     marginBottom: "2rem",
     color: "Purple",
   };
+
   const inputStyle = {
     width: "100%",
     padding: "0.6rem",
@@ -64,6 +72,7 @@ const Signin = ({ handleSignInSuccess }) => {
     background:
       "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
   };
+
   const buttonStyle = {
     width: "100%",
     padding: "0.8rem",

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../styles.css";
+import { UserContext } from "../UserContext"; // Import UserContext
 
 const Header = () => {
+  const { userEmail } = useContext(UserContext); // Access userEmail from context
+
   return (
     <Navbar
       expand="lg"
@@ -14,7 +17,23 @@ const Header = () => {
     >
       <Container>
         <Navbar.Brand style={{ color: "white", fontWeight: "bold" }}>
-          CALORIEMATE
+          {/* Display the welcome message if the user is signed in */}
+          {userEmail && (
+            <span
+              style={{
+                color: "White",
+
+                //fontWeight: "bold",
+                fontSize: "14px",
+                //textTransform: "uppercase",
+                letterSpacing: "1px",
+                //position: "fixed",
+                marginRight: "15px",
+              }}
+            >
+              Welcome {userEmail}!
+            </span>
+          )}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

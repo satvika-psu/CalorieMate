@@ -1,7 +1,8 @@
 // pages/Signup.js
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -9,7 +10,9 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
-  //const [username, setUsername] = useState("");
+
+  // Get the context value to update the userEmail
+  const { setUserEmail } = useContext(UserContext);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -22,6 +25,7 @@ export default function Signup() {
 
       if (response.status === 200) {
         setSuccessMessage("Signup successful! Please log in.");
+        setUserEmail(email);
         navigate("/dashboard");
       }
     } catch (error) {
