@@ -1,0 +1,10 @@
+.nav-link:hover {
+  background-color: #d3d3d3;
+  color: #000;
+  border-radius: 5px;
+}
+
+.home-container {
+  position: relative;
+  overflow: hidden;
+}
