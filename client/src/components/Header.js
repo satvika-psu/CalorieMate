@@ -63,6 +63,30 @@ const Header = () => {
             >
               Sign Out
             </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/browsefood"
+              className="nav-link"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Browse Food
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/mealplan"
+              className="nav-link"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Meal Plan
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/workoutplan"
+              className="nav-link"
+              style={{ color: "white", fontWeight: "bold" }}
+            >
+              Workout Plan
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
