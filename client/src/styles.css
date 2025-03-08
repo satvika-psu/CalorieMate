@@ -123,7 +123,7 @@ body {
 
 .generate-btn {
   height: 50px;
-  margin-top: 0; /* Add padding for better appearance */
+  margin-top: 0;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f0f0f0;
@@ -174,7 +174,6 @@ body {
   background-color: #0056b3;
 }
 
-/* Meal Selection */
 .meal-container {
   border: 2px solid #e5e7eb;
   padding: 16px;
@@ -352,20 +351,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align content to the top */
+  justify-content: flex-start;
   min-height: 100vh;
   font-family: Arial, sans-serif;
   background-color: rgb(243, 238, 238);
   padding: 20px;
 }
 
-/* Search Box */
 .search-box {
   display: flex;
   justify-content: center;
   width: 80%;
-  max-width: 800px;
-  margin-bottom: 20px; /* Space between search box and content */
+  max-width: 950px;
+  margin-bottom: 20px;
 }
 
 .search-box input {
@@ -374,9 +372,9 @@ body {
   border: 2px solid #ccc;
   border-radius: 5px 0 0 5px;
   outline: none;
-  width: 400px; /* Increased width */
+  width: 400px;
   max-width: 600px;
-  margin: 0px; /* Adjust width as needed */
+  margin: 0px;
 }
 
 .search-box button {
@@ -388,48 +386,43 @@ body {
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  white-space: nowrap; /* Prevents text from wrapping */
+  white-space: nowrap;
 }
 
 .search-box button:hover {
   background-color: #0056b3;
 }
 
-/* Content Container */
 .content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 800px; /* Increased to fit both the nutritional and pie chart boxes */
+  max-width: 900px;
   margin-bottom: 20px;
   margin-top: 30px;
 }
 
-/* Food Information and Pie Chart Container */
 .food-info-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px; /* Space between the food info and chart */
+  margin-bottom: 20px;
 }
 
-/* Food Information Box */
 .nutritional-value-box {
   flex: 2;
   background: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  margin-right: 40px; /* Add right margin for spacing */
-  width: 500px;
+  margin-right: 30px;
 }
 
-/* Title */
 .nutritional-value-box h3 {
   text-align: center;
   color: #333;
-  font-size: 21px;
+  font-size: 23px;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -448,7 +441,6 @@ body {
   height: 40px;
 }
 
-/* Nutritional Table */
 .nutrition-table {
   width: 100%;
   border-collapse: collapse;
@@ -461,7 +453,7 @@ body {
 }
 
 .nutrition-table tr:nth-child(even) {
-  background-color: #f9f9f9; /* Alternating row colors */
+  background-color: #f9f9f9;
 }
 
 .nutrition-table td {
@@ -481,32 +473,64 @@ body {
   color: #333;
 }
 
-/* Pie Chart Container */
 .pie-chart-container {
   flex: 1;
   background: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  border-left: 2px solid #ccc; /* Add a small partition line */
-  height: 640px;
+  border-left: 1px solid #ccc;
+  height: 300px;
   width: 300px;
 }
 
-/* Chart Container */
+.meal-image-container {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.meal-image-container h3 {
+  text-align: center;
+  color: #333;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.meal-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
 .bar-chart-container {
   width: 100%;
   background: white;
   padding: 20px;
-  margin: 30px;
+  margin: 15px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  height: 350px;
-  width: 800px;
+  height: 400px;
+  width: 900px;
+  color: black;
 }
 
 .bar-chart-container canvas {
-  max-height: 300px; /* Restrict height for better visualization */
+  max-height: 300px;
+}
+
+.bar-chart-container h4 {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /* Responsive Design */
@@ -526,4 +550,45 @@ body {
     flex-direction: column;
     align-items: center;
   }
+  .food-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-and-image-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .meal-image-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.calories-info {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.calories-info h3 {
+  font-size: 19px;
+  font-weight: bold;
+  color: rgb(178, 6, 6);
+}
+
+/* Main Container */
+.main-container {
+  background: white;
+  padding: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
