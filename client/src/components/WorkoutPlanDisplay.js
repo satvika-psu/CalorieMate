@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { saveWorkout } from "../services/workoutService";
 
 // Function to dynamically get image path based on workout type
 const getImagePath = (workoutType) => {
@@ -17,6 +18,8 @@ const WorkoutPlanDisplay = ({ workoutPlan, setWorkoutPlan, userEmail }) => {
   const [viewWorkouts, setViewWorkouts] = useState(false);
   const navigate = useNavigate();
 
+  // Function to Save Workout
+
   const handleSaveWorkout = async (workoutType) => {
     if (!userEmail) {
       setErrorMessages((prev) => ({
@@ -28,15 +31,14 @@ const WorkoutPlanDisplay = ({ workoutPlan, setWorkoutPlan, userEmail }) => {
 
     try {
       const workoutData = workoutPlan[workoutType];
-      // Unique ID for each workout
-      const id = Date.now();
-
-      await axios.post("http://localhost:5000/api/workout/workout", {
+      const id = Date.now(); // Unique ID for each workout
+      await saveWorkout({
         id: id,
-        workouttype: workoutType,
+        workoutType: workoutType,
         duration: workoutData.duration,
-        caloriesburned: workoutData.caloriesBurned,
+        caloriesBurned: workoutData.caloriesBurned,
         email: userEmail,
+        totalCalories: workoutData.totalCalories,
       });
 
       setSaveMessages((prev) => ({
