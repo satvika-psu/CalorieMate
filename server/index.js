@@ -5,9 +5,14 @@ const signIn = require("./routes/signIn");
 const signOut = require("./routes/signOut");
 const workOut = require("./routes/workOut");
 const mealplan = require("./routes/mealplan");
+const browsefood = require("./routes/browsefood");
 const app = express();
 
+// Middleware to parse incoming JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/api/signin", signIn);
@@ -15,6 +20,8 @@ app.use("/api/signup", signUp);
 app.use("/api/signout", signOut);
 app.use("/api/workout", workOut);
 app.use("/api/mealplan", mealplan);
+app.use("/api/browsefood", browsefood);
+app.use("/api/mealimage", browsefood);
 
 
 const PORT = process.env.PORT || 5000;
