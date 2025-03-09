@@ -19,7 +19,6 @@ body {
   width: 100vw;
 }
 
-
 /*MealPlan Styling*/
 body {
   background-color: #f5f5f5;
@@ -28,12 +27,11 @@ body {
 }
 
 .meal-plan-container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f5f5f5;
-  min-height: 100vh;
-  width: 100vw;
+  min-height: 150vh;
+  max-width: 100%;
 }
 
 .meal-plan-title {
@@ -98,7 +96,7 @@ body {
   margin-top: 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
   height: 38px;
   font-size: 15px;
 }
@@ -107,6 +105,7 @@ body {
   background: blue;
   width: 100px;
   margin: 20px;
+  height: 300px;
 }
 .get-recipe-btn:hover,
 .save-button:hover,
@@ -117,10 +116,18 @@ body {
 .input-container {
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
-  justify-content: center;
+}
+
+.generate-btn {
+  height: 50px;
+  margin-top: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
 }
 
 .search-box {
@@ -132,6 +139,7 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  height: 70px;
 }
 
 .input-field,
@@ -143,7 +151,7 @@ body {
   background-color: white;
   cursor: pointer;
   outline: none;
-  width: 120px;
+  width: 100px;
 }
 
 .label {
@@ -166,7 +174,6 @@ body {
   background-color: #0056b3;
 }
 
-/* Meal Selection */
 .meal-container {
   border: 2px solid #e5e7eb;
   padding: 16px;
@@ -261,7 +268,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .close-modal-btn:hover {
@@ -300,7 +307,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .close-modal-btn:hover {
@@ -316,7 +323,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .get-details-btn:hover {
@@ -339,3 +346,249 @@ body {
   line-height: 1.6;
 }
 
+/*Styles for Browse Food */
+.browse-food-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: rgb(243, 238, 238);
+  padding: 20px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 950px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  padding: 10px;
+  font-size: 15px;
+  border: 2px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  width: 400px;
+  max-width: 600px;
+  margin: 0px;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border: none;
+  background-color: rgb(76, 220, 76);
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.search-box button:hover {
+  background-color: #0056b3;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.food-info-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.nutritional-value-box {
+  flex: 2;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
+}
+
+.nutritional-value-box h3 {
+  text-align: center;
+  color: #333;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Serving Size Box */
+.serving-size {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 40px;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.nutrition-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.nutrition-table td {
+  padding: 12px;
+  font-size: 16px;
+  color: #555;
+}
+
+.nutrition-table td:first-child {
+  font-weight: bold;
+  color: #222;
+  text-align: left;
+}
+
+.nutrition-table td:last-child {
+  text-align: right;
+  color: #333;
+}
+
+.pie-chart-container {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #ccc;
+  height: 300px;
+  width: 300px;
+}
+
+.meal-image-container {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.meal-image-container h3 {
+  text-align: center;
+  color: #333;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.meal-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.bar-chart-container {
+  width: 100%;
+  background: white;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  height: 400px;
+  width: 900px;
+  color: black;
+}
+
+.bar-chart-container canvas {
+  max-height: 300px;
+}
+
+.bar-chart-container h4 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bar-chart-container {
+    flex-direction: column;
+  }
+
+  .nutritional-value-box,
+  .pie-chart-container,
+  .bar-chart-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .food-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .food-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-and-image-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .meal-image-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.calories-info {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.calories-info h3 {
+  font-size: 19px;
+  font-weight: bold;
+  color: rgb(178, 6, 6);
+}
+
+/* Main Container */
+.main-container {
+  background: white;
+  padding: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

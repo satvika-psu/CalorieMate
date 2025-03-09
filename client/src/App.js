@@ -12,10 +12,10 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Signout from "./pages/Signout";
 import Dashboard from "./pages/Dashboard";
-import Page2 from "./pages/Page_2";
 import MealPlan from "./pages/MealPlan";
 import Workout from "./pages/Workout";
 import { UserProvider } from "./UserContext"; // Import the context
+import BrowseFood from "./pages/BrowseFood";
 
 function App() {
   const location = useLocation();
@@ -35,9 +35,9 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signout" element={<Signout />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/page2" element={<Page2 />} />
         <Route path="/mealplan" element={<MealPlan />} />{" "}
         <Route path="/workout" element={<Workout />} />
+        <Route path="/browsefood" element={<BrowseFood />} />
       </Routes>
     </div>
   );
