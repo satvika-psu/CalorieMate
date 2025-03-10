@@ -79,9 +79,33 @@ const MealPlan = () => {
     }
   };
 
-  const handleSaveMealPlan = () => {
+  const handleSaveMealPlan = async () => {
     alert("Meal plan saved successfully!");
     console.log("Selected Meals:", selectedMeals);
+    if (Object.keys(selectedMeals).length !== mealsCount) {
+      alert("Please select meals for all meal types before saving.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/savemealplan",
+        {
+          selectedMeals,
+          mealPlan, // Send the mealPlan data along with selectedMeals
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Meal plan saved successfully!");
+        console.log("Saved Meal Plan:", response.data);
+      } else {
+        alert("Failed to save meal plan. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error saving meal plan:", error);
+      alert("An error occurred while saving the meal plan.");
+    }
   };
 
   const handleAddRecipe = () => {

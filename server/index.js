@@ -6,6 +6,7 @@ const signOut = require("./routes/signOut");
 const workOut = require("./routes/workOut");
 const mealplan = require("./routes/mealplan");
 const browsefood = require("./routes/browsefood");
+const savemealplan = require("./routes/saveMeal");
 const app = express();
 
 // Middleware to parse incoming JSON
@@ -22,7 +23,7 @@ app.use("/api/workout", workOut);
 app.use("/api/mealplan", mealplan);
 app.use("/api/browsefood", browsefood);
 app.use("/api/mealimage", browsefood);
-
+app.use("/api/savemealplan", savemealplan);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
