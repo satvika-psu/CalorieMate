@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../UserContext";
 import axios from "axios";
 
 const MealPlan = () => {
@@ -8,6 +9,7 @@ const MealPlan = () => {
   const [selectedMeals, setSelectedMeals] = useState({});
   const [showSelectedRecipes, setShowSelectedRecipes] = useState(false);
   const [expandedMeals, setExpandedMeals] = useState({}); // Track expanded state for each meal
+  const { userEmail } = useContext(UserContext);
 
   const mealTypes = ["Breakfast", "Lunch", "Main Dish", "Snack", "Dessert"];
 
@@ -92,12 +94,13 @@ const MealPlan = () => {
         "http://localhost:5000/api/savemealplan",
         {
           selectedMeals,
-          mealPlan, // Send the mealPlan data along with selectedMeals
+          mealPlan,
+          userEmail,
         }
       );
 
       if (response.status === 200) {
-        alert("Meal plan saved successfully!");
+        //alert("Meal plan saved successfully!");
         console.log("Saved Meal Plan:", response.data);
       } else {
         alert("Failed to save meal plan. Please try again.");
@@ -110,19 +113,6 @@ const MealPlan = () => {
 
   const handleAddRecipe = () => {
     setShowSelectedRecipes(true);
-  };
-
-  const handleEditMeal = (mealType) => {
-    // Logic to edit the selected meal
-    alert(`Edit ${mealType}`);
-  };
-
-  const handleDeleteMeal = (mealType) => {
-    // Logic to delete the selected meal
-    const updatedSelectedMeals = { ...selectedMeals };
-    delete updatedSelectedMeals[mealType];
-    setSelectedMeals(updatedSelectedMeals);
-    alert(`Deleted ${mealType}`);
   };
 
   return (
@@ -221,21 +211,6 @@ const MealPlan = () => {
                       <ul>{expandedMeals[mealType].ingredients}</ul>
                       <h4>Nutrition:</h4>
                       <ul>{expandedMeals[mealType].nutrition}</ul>
-                      {/* Edit and Delete Buttons - Only show when details are expanded */}
-                      <div className="card-actions">
-                        <button
-                          onClick={() => handleEditMeal(mealType)}
-                          className="edit-btn"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDeleteMeal(mealType)}
-                          className="delete-btn"
-                        >
-                          Delete
-                        </button>
-                      </div>
                     </div>
                   )}
                 </div>
