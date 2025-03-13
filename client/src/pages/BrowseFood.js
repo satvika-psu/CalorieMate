@@ -147,11 +147,14 @@ const BrowseFood = () => {
 
   return (
     <div className="browse-food-container">
+      <h2 className="browse-food-title">
+        Explore Nutritional Information for Foods
+      </h2>
       <div className="search-box">
         <div className="input-food">
           <input
             type="text"
-            placeholder="Search for calories in your food.."
+            placeholder="Search for calories in your food..."
             value={food}
             onChange={(e) => setFood(e.target.value)}
           />

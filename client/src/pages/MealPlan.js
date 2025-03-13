@@ -128,12 +128,12 @@ const MealPlan = () => {
               <span className="label">I want to eat</span>
               <input
                 type="number"
-                placeholder="Enter cal"
+                placeholder="Enter calories"
                 className="input-field"
                 value={calories}
                 onChange={(e) => setCalories(Number(e.target.value))}
               />
-              <span className="label">in</span>
+              <span>in</span>
               <select
                 className="dropdown"
                 value={mealsCount}
