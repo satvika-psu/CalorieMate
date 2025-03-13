@@ -177,9 +177,6 @@ router.put("/status/:id", async (req, res) => {
       return res.status(500).json({ error: "Failed to update workout status" });
     }
 
-    if (data.length === 0) {
-      return res.status(404).json({ error: "Workout not found" });
-    }
     res.status(200).json({ message: "Workout status updated successfully" });
   } catch (error) {
     console.error("Error in the server:", error.message);

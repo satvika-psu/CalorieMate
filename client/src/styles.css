@@ -14,7 +14,7 @@ body {
   width: 100vw;
 }
 
-/*MealPlan Styling*/
+
 body {
   background-color: #f5f5f5;
   min-height: 100vh;
@@ -22,21 +22,28 @@ body {
 }
 
 .meal-plan-container {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f5f5f5;
-  min-height: 100vh;
-  width: 100vw;
+  min-height: 150vh;
+  max-width: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(22, 93, 112, 1) 100%
+  );
 }
 
 .meal-plan-title {
   display: flex;
   justify-content: center;
-  font-size: 25px;
+  font-size: 22px;
+  color: white;
 }
+
 .meal-plan-content {
   display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
@@ -44,77 +51,169 @@ body {
   flex: 2;
 }
 
-.meal-plan-right {
-  flex: 1;
+.selected-recipes-container {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-  border-left: 2px solid #ccc;
-  padding-left: 20px;
+  margin-top: 20px;
 }
 
-.meal-plan-right h3 {
+.selected-recipes-container h3 {
   color: #333;
   margin-bottom: 15px;
   font-size: 25px;
+  text-align: center;
 }
 
-.selected-meal {
-  background: #fafafa;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.selected-meals-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-.selected-meal h4 {
+.selected-meals-grid.meals-count-2 .selected-meal-card {
+  flex: 1 1 calc(50% - 20px);
+  max-width: calc(50% - 20px);
+}
+
+.selected-meals-grid.meals-count-3 .selected-meal-card {
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+}
+
+.selected-meals-grid.meals-count-4 .selected-meal-card {
+  flex: 1 1 calc(25% - 20px);
+  max-width: calc(25% - 20px);
+}
+
+.selected-meals-grid.meals-count-5 .selected-meal-card {
+  flex: 1 1 calc(20% - 20px);
+  max-width: calc(20% - 20px);
+}
+
+.selected-meal-card {
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.selected-meal-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.selected-meal-card h4 {
   color: #444;
-  margin-bottom: 5px;
-  font-size: 20px;
+  margin-bottom: 1px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.selected-meal p {
-  margin: 5px 0 0;
-  font-size: 15px;
+.selected-meal-card p {
+  margin: 10px 0;
+  font-size: 16px;
   color: #555;
+  line-height: 1.5;
 }
 
-.get-recipe-btn,
+.recipe-details {
+  margin-top: 10px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  width: 100%;
+  text-align: left;
+}
+
+.recipe-details h4 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.recipe-details p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.recipe-details ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.recipe-details ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #141313;
+}
+
+.get-details-btn,
 .save-button,
 .add-recipe-btn {
   background: #28a745;
   color: white;
   border: none;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 12px 24px;
+  margin-top: 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
-  height: 38px;
-  font-size: 15px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  display: block;
+  margin: 10px auto;
 }
 
 .save-button {
-  background: blue;
-  width: 100px;
-  margin: 20px;
+  background: #007bff;
+  width: 120px;
+  height: 50px;
 }
-.get-recipe-btn:hover,
+
+.get-details-btn:hover,
 .save-button:hover,
 .add-recipe-btn:hover {
   background: #218838;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .input-container {
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
-  justify-content: center;
+}
+
+.generate-btn {
+  height: 45px;
+  width: 100px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.generate-btn h4 {
+  color: black;
+  font-size: 17px;
 }
 
 .search-box {
@@ -126,6 +225,8 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  height: 70px;
+  padding: 10px;
 }
 
 .input-field,
@@ -137,12 +238,12 @@ body {
   background-color: white;
   cursor: pointer;
   outline: none;
-  width: 120px;
+  width: 100px;
 }
 
 .label {
-  font-size: 16px;
-  color: #333;
+  font-size: 17px;
+  color: #141414;
 }
 
 .generate-btn {
@@ -160,15 +261,16 @@ body {
   background-color: #0056b3;
 }
 
-/* Meal Selection */
 .meal-container {
   border: 2px solid #e5e7eb;
-  padding: 16px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
   background-color: #ffffff;
   transition: transform 0.2s ease-in-out;
+  width: 950px;
+  margin: 15px auto;
 }
 
 .meal-container:hover {
@@ -176,10 +278,11 @@ body {
 }
 
 .meal-title {
-  font-size: 1.1rem;
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
+  text-align: center;
 }
 
 .meal-option {
@@ -196,7 +299,7 @@ body {
   background-color: #f9fafb;
 }
 
-.meal-option input[type="radio"] {
+.meal-option input[type="checkbox"] {
   cursor: pointer;
   transform: scale(1.2);
 }
@@ -212,123 +315,290 @@ body {
   color: #6b7280;
 }
 
-.recipe-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+/* Styles for Edit and Delete Buttons */
+.card-actions {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.recipe-modal {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 800px;
-  text-align: center;
-}
-
-.recipe-modal h3,
-.recipe-modal h4 {
-  color: #333;
-}
-
-.recipe-modal-content p {
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.6;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-
-.close-modal-btn {
-  margin-top: 15px;
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.close-modal-btn:hover {
-  background: #c82333;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.98);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: #ffffff;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 10px;
-  max-width: 650px;
-  width: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.close-modal-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #ff4d4d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
-}
-
-.close-modal-btn:hover {
-  background: #ff1a1a;
-}
-
-.get-details-btn {
+  justify-content: space-between;
   margin-top: 10px;
-  padding: 8px 16px;
-  background: #4caf50;
-  color: white;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 10px 20px;
   border: none;
+  margin: 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-.get-details-btn:hover {
-  background: #45a049;
+.edit-btn {
+  background-color: #ffc107; /* Yellow for Edit */
+  color: #000;
 }
 
-.modal-content ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 10px 0;
+.edit-btn:hover {
+  background-color: #e0a800; /* Darker yellow on hover */
 }
 
-.modal-content h4 {
-  margin-top: 15px;
+.delete-btn {
+  background-color: #dc3545; /* Red for Delete */
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/*Styles for Browse Food */
+.browse-food-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(
+    45deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(22, 93, 112, 1) 100%
+  );
+  padding: 20px;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 950px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  padding: 10px;
+  font-size: 15px;
+  border: 2px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  width: 400px;
+  max-width: 600px;
+  margin: 0px;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border: none;
+  background-color: rgb(76, 220, 76);
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.search-box button:hover {
+  background-color: #0056b3;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.food-info-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.nutritional-value-box {
+  flex: 2;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
+}
+
+.nutritional-value-box h3 {
+  text-align: center;
+  color: #333;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.serving-size {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 40px;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.nutrition-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.nutrition-table td {
+  padding: 12px;
+  font-size: 16px;
+  color: #555;
+}
+
+.nutrition-table td:first-child {
+  font-weight: bold;
+  color: #222;
+  text-align: left;
+}
+
+.nutrition-table td:last-child {
+  text-align: right;
   color: #333;
 }
 
-.modal-content p {
-  color: #555;
-  line-height: 1.6;
+.pie-chart-container {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid #ccc;
+  height: 300px;
+  width: 300px;
 }
+
+.meal-image-container {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.meal-image-container h3 {
+  text-align: center;
+  color: #333;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.meal-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.bar-chart-container {
+  width: 100%;
+  background: white;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  height: 400px;
+  width: 900px;
+  color: black;
+}
+
+.bar-chart-container canvas {
+  max-height: 300px;
+}
+
+.bar-chart-container h4 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bar-chart-container {
+    flex-direction: column;
+  }
+
+  .nutritional-value-box,
+  .pie-chart-container,
+  .bar-chart-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .food-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .food-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-and-image-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .meal-image-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.calories-info {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.calories-info h3 {
+  font-size: 19px;
+  font-weight: bold;
+  color: rgb(245, 245, 11);
+}
+
+/* Main Container */
+.main-container {
+  background: white;
+  padding: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
