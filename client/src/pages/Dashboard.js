@@ -149,13 +149,16 @@ const Dashboard = () => {
       .filter((workout) => workout.status === status)
       .reduce((total, workout) => total + workout.totalcalories, 0);
   };
+
   const totalCaloriesTrue = getTotalCalories(true);
   const totalCaloriesFalse = getTotalCalories(false);
   const totalCalories = totalCaloriesTrue + totalCaloriesFalse;
-  const progressPercentage = Math.min(
-    (totalCaloriesTrue / totalCalories) * 100,
-    100
-  );
+
+  // Safeguard the progress percentage calculation to avoid division by zero or NaN
+  const progressPercentage =
+    totalCalories > 0
+      ? Math.min((totalCaloriesTrue / totalCalories) * 100, 100)
+      : 0; // Set to 0 if totalCalories is 0
 
   //Styles
   const homeContainerStyle = {
@@ -249,7 +252,7 @@ const Dashboard = () => {
   };
   const buttonStyle = {
     marginTop: "10px",
-    background: "#8fbba8",
+    backgroundColor: "rgba(0, 64, 0, 0.7)",
     color: "white",
     border: "none",
     borderRadius: "5px",
@@ -316,7 +319,7 @@ const Dashboard = () => {
             ) : error ? (
               <p>{error}</p>
             ) : workouts.length === 0 ? (
-              <p>No workouts found for today.</p>
+              <p style={{ color: "red" }}>No workouts found for today.</p>
             ) : (
               <table style={tableStyle}>
                 <thead>

@@ -135,10 +135,25 @@ const WorkoutForm = ({ setWorkoutPlan, userEmail }) => {
     borderRadius: "10px 10px 0 0",
   });
 
+  // Screen reader only style for hidden labels
+  const srOnlyStyle = {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    padding: 0,
+    margin: "-1px",
+    overflow: "hidden",
+    clip: "rect(0, 0, 0, 0)",
+    border: 0,
+  };
+
   return (
     <div className="workout-form-container p-4" style={formContainerStyle()}>
       <form onSubmit={handleSubmit}>
         <div className="form-group mb-3">
+          <label htmlFor="calories" style={srOnlyStyle}>
+            Enter Calories
+          </label>
           <input
             type="text"
             id="calories"

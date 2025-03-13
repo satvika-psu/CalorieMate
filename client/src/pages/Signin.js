@@ -67,7 +67,6 @@ const Signin = () => {
     border: "whitesmoke",
     fontSize: "1rem",
     fontFamily: "Poppins",
-
     background: "white",
   };
 
@@ -83,13 +82,28 @@ const Signin = () => {
     fontFamily: "Poppins",
   };
 
+  // Screen reader only style for hidden labels
+  const srOnlyStyle = {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    padding: 0,
+    margin: "-1px",
+    overflow: "hidden",
+    clip: "rect(0, 0, 0, 0)",
+    border: 0,
+  };
+
   return (
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSignin}>
         <h1 style={headingStyle}>User Login</h1>
         <div>
-          {/*<label>Email:</label>*/}
+          <label htmlFor="email" style={srOnlyStyle}>
+            Email
+          </label>
           <input
+            id="email"
             type="email"
             value={email}
             placeholder="Email"
@@ -99,8 +113,11 @@ const Signin = () => {
           />
         </div>
         <div>
-          {/*<label>Password:</label>*/}
+          <label htmlFor="password" style={srOnlyStyle}>
+            Password
+          </label>
           <input
+            id="password"
             type="password"
             value={password}
             placeholder="Password"
