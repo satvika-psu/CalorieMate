@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Bar, Pie } from "react-chartjs-2";
+import defaul_food_Image from "../images/Vegetables.jpg";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -35,7 +37,6 @@ const BrowseFood = () => {
     }
 
     try {
-      // Fetch nutrition data
       const nutritionResponse = await axios.get(
         "http://localhost:5000/api/browsefood",
         {
@@ -44,15 +45,20 @@ const BrowseFood = () => {
       );
       setFoodData(nutritionResponse.data);
 
-      // Fetch meal image
-      const mealImageResponse = await axios.get(
-        "http://localhost:5000/api/mealimage/mealimage",
-        {
-          params: { query: food },
-        }
-      );
-      setMealImageUrl(mealImageResponse.data.imageUrl);
-      setError(null); // Clear any previous errors
+      try {
+        const mealImageResponse = await axios.get(
+          "http://localhost:5000/api/mealimage/mealimage",
+          {
+            params: { query: food },
+          }
+        );
+        setMealImageUrl(mealImageResponse.data.imageUrl);
+      } catch (imageError) {
+        console.error("Error fetching meal image:", imageError);
+        setMealImageUrl(defaul_food_Image);
+      }
+
+      setError(null);
     } catch (error) {
       console.error("Error fetching data:", error);
       setFoodData(null);
@@ -155,7 +161,6 @@ const BrowseFood = () => {
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* Display the total calories line */}
       {foodData && foodData.length > 0 && (
         <div className="calories-info">
           <h3>
@@ -225,21 +230,19 @@ const BrowseFood = () => {
                     options={{ responsive: true }}
                   />
                 </div>
-                {mealImageUrl && (
-                  <div className="meal-image-container">
-                    <h3>{food} image</h3>
-                    <img
-                      src={mealImageUrl}
-                      alt="Meal"
-                      style={{ maxWidth: "100%", height: "auto" }}
-                    />
-                  </div>
-                )}
+                <div className="meal-image-container">
+                  <h3>{food} image</h3>
+                  <img
+                    src={mealImageUrl || defaul_food_Image}
+                    alt="Meal"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="bar-chart-container">
-              <h4>Visual Breakdown for {food}</h4>
+              <h4>Nutritional Breakdown for {food}</h4>
               <Bar
                 data={generateBarChartData()}
                 options={{ responsive: true }}

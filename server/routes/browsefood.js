@@ -86,47 +86,4 @@ router.get("/mealimage", async (req, res) => {
   }
 });
 
-// Route to fetch meal details from MealDB API
-router.get("/meal-details", async (req, res) => {
-  try {
-    const { query } = req.query;
-    if (!query) {
-      return res.status(400).json({ error: "Query parameter is required" });
-    }
-
-    const response = await axios.get(MEALDB_API_URL, {
-      params: { s: query },
-    });
-
-    console.log("MealDB API Response:", response.data);
-
-    if (!response.data.meals || response.data.meals.length === 0) {
-      return res.status(404).json({ error: "No meals found" });
-    }
-
-    // Extract the first meal from the response
-    const meal = response.data.meals[0];
-
-    // Format the response to include relevant meal details
-    const mealDetails = {
-      id: meal.idMeal,
-      name: meal.strMeal,
-      category: meal.strCategory,
-      area: meal.strArea,
-      imageUrl: meal.strMealThumb,
-      youtubeUrl: meal.strYoutube,
-      ingredients: [],
-    };
-
-    console.log("Meal Details:", mealDetails);
-
-    res.json(mealDetails);
-  } catch (error) {
-    console.error("Error fetching data from MealDB API:", error.message);
-    res
-      .status(500)
-      .json({ error: "Failed to fetch meal details", details: error.message });
-  }
-});
-
 module.exports = router;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../UserContext";
 import axios from "axios";
 
 const MealPlan = () => {
@@ -7,8 +8,8 @@ const MealPlan = () => {
   const [mealPlan, setMealPlan] = useState({});
   const [selectedMeals, setSelectedMeals] = useState({});
   const [showSelectedRecipes, setShowSelectedRecipes] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [currentRecipe, setCurrentRecipe] = useState(null); // State to store the current recipe details
+  const [expandedMeals, setExpandedMeals] = useState({}); // Track expanded state for each meal
+  const { userEmail } = useContext(UserContext);
 
   const mealTypes = ["Breakfast", "Lunch", "Main Dish", "Snack", "Dessert"];
 
@@ -37,7 +38,7 @@ const MealPlan = () => {
     setSelectedMeals({ ...selectedMeals, [mealType]: recipeTitle });
   };
 
-  const fetchRecipeDetails = async (recipeTitle) => {
+  const fetchRecipeDetails = async (mealType, recipeTitle) => {
     let selectedRecipe = null;
 
     // Search for the selected recipe in the mealPlan
@@ -52,8 +53,6 @@ const MealPlan = () => {
       const { description, ingredients, calories, carbohydrate, fat, protein } =
         selectedRecipe;
 
-      console.log("Selected Recipe Details:", selectedRecipe);
-
       const formattedIngredients = ingredients.map((ingredient, index) => (
         <li key={index}>{ingredient}</li>
       ));
@@ -67,27 +66,49 @@ const MealPlan = () => {
         <li key={index}>{`${nutrient.name}: ${nutrient.value}`}</li>
       ));
 
-      setCurrentRecipe({
-        title: recipeTitle,
-        description,
-        ingredients: formattedIngredients,
-        nutrition: formattedNutrition,
-      });
-
-      setIsModalOpen(true);
+      // Update the expanded state for the specific meal
+      setExpandedMeals((prev) => ({
+        ...prev,
+        [mealType]: {
+          title: recipeTitle,
+          description,
+          ingredients: formattedIngredients,
+          nutrition: formattedNutrition,
+        },
+      }));
     } else {
       console.error("Recipe not found in mealPlan");
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCurrentRecipe(null);
-  };
-
-  const handleSaveMealPlan = () => {
+  const handleSaveMealPlan = async () => {
     alert("Meal plan saved successfully!");
     console.log("Selected Meals:", selectedMeals);
+    if (Object.keys(selectedMeals).length !== mealsCount) {
+      alert("Please select meals for all meal types before saving.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/savemealplan",
+        {
+          selectedMeals,
+          mealPlan,
+          userEmail,
+        }
+      );
+
+      if (response.status === 200) {
+        //alert("Meal plan saved successfully!");
+        console.log("Saved Meal Plan:", response.data);
+      } else {
+        alert("Failed to save meal plan. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error saving meal plan:", error);
+      alert("An error occurred while saving the meal plan.");
+    }
   };
 
   const handleAddRecipe = () => {
@@ -124,10 +145,10 @@ const MealPlan = () => {
                   </option>
                 ))}
               </select>
+              <button onClick={handleGenerateMealPlan} className="generate-btn">
+                <h4>Generate</h4>
+              </button>
             </div>
-            <button onClick={handleGenerateMealPlan} className="generate-btn">
-              Generate
-            </button>
           </div>
 
           {/* Displaying Meal Plan with Selection Option */}
@@ -160,46 +181,45 @@ const MealPlan = () => {
               </button>
             )}
         </div>
+      </div>
 
-        {/* Right Side: Selected Recipes */}
-        {showSelectedRecipes && (
-          <div className="meal-plan-right">
-            <h3>Selected Recipes</h3>
+      {/* Selected Recipes Container */}
+      {showSelectedRecipes && (
+        <div className="selected-recipes-container">
+          <h3>Selected Recipes</h3>
+          <div className={`selected-meals-grid meals-count-${mealsCount}`}>
             {Object.keys(selectedMeals).map((mealType) => {
               const recipeTitle = selectedMeals[mealType];
 
               return (
-                <div key={mealType} className="selected-meal">
+                <div key={mealType} className="selected-meal-card">
                   <h4>{mealType}</h4>
                   <p>{recipeTitle}</p>
                   <button
-                    onClick={() => fetchRecipeDetails(recipeTitle)}
+                    onClick={() => fetchRecipeDetails(mealType, recipeTitle)}
                     className="get-details-btn"
                   >
                     Get Details
                   </button>
+
+                  {/* Show recipe details if expanded */}
+                  {expandedMeals[mealType] && (
+                    <div className="recipe-details">
+                      <h4>Description:</h4>
+                      <p>{expandedMeals[mealType].description}</p>
+                      <h4>Ingredients:</h4>
+                      <ul>{expandedMeals[mealType].ingredients}</ul>
+                      <h4>Nutrition:</h4>
+                      <ul>{expandedMeals[mealType].nutrition}</ul>
+                    </div>
+                  )}
                 </div>
               );
             })}
-            <button onClick={handleSaveMealPlan} className="save-button">
-              Save
-            </button>
           </div>
-        )}
-      </div>
-
-      {/* Modal for Recipe Details */}
-      {isModalOpen && currentRecipe && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>{currentRecipe.title}</h3>
-            <p>{currentRecipe.description}</p>
-            <h4>Ingredients:</h4>
-            <ul>{currentRecipe.ingredients}</ul>
-            <h4>Nutrition:</h4>
-            <ul>{currentRecipe.nutrition}</ul>
-            <button onClick={closeModal} className="close-modal-btn">
-              Close
+          <div className="button-container">
+            <button onClick={handleSaveMealPlan} className="save-button">
+              SAVE
             </button>
           </div>
         </div>
