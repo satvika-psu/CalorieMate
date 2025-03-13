@@ -26,7 +26,6 @@ const Dashboard = () => {
   const [newDuration, setNewDuration] = useState("");
   const [newServing, setServing] = useState("");
   const [message, setMessage] = useState("");
-
   const navigate = useNavigate();
 
   // Fetch workouts and selected meals on component mount
@@ -66,7 +65,10 @@ const Dashboard = () => {
     try {
       await deleteWorkout(workoutId);
       setWorkouts(await fetchWorkouts(userEmail));
-      setMessage("Workout deleted Sucessfully!!");
+      setMessage("Workout Deleted Sucessfully!!");
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
     } catch (err) {
       console.error(err.message);
     }
@@ -83,7 +85,11 @@ const Dashboard = () => {
     try {
       await updateWorkoutDuration(workoutId, newDuration);
       setWorkouts(await fetchWorkouts(userEmail));
+      setMessage("Workout Updated Sucessfully!!");
       setEditingWorkoutId(null);
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
     } catch (err) {
       console.error(err.message);
     }
@@ -153,33 +159,27 @@ const Dashboard = () => {
 
   //Styles
   const homeContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     height: "200vh",
     padding: "20px",
     width: "100%",
     backgroundImage:
       "linear-gradient(to right top, #fdcfbf, #ebcbb0, #d7c7a7, #c2c3a2, #adbea1, #a3bda2, #99bca5, #8fbba8, #8bbfac, #86c2b1, #81c6b6, #7bc9bc)",
   };
+
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
-    height: "300vh",
+    alignItems: "center",
+    height: "200vh",
     padding: "20px",
     width: "100%",
-    marginTop: "20px",
-    marginLeft: "100px",
+    marginTop: "30px",
     background: "transparent",
-  };
-
-  const leftContainerStyle = {
-    width: "100%",
-    marginBottom: "40px",
-  };
-
-  const rightContainerStyle = {
-    width: "100%",
-    marginLeft: "0px",
   };
 
   const headingContainerStyle = {
@@ -191,7 +191,7 @@ const Dashboard = () => {
     border: "1px solid lightgray",
     borderRadius: "12px",
     width: "70%",
-    backgroundColor: "white",
+    background: "white",
     fontFamily: "Poppins",
   };
 
@@ -199,14 +199,14 @@ const Dashboard = () => {
     color: "purple",
     marginBottom: "10px",
     fontFamily: "Poppins",
-    fontSize: "20px",
+    fontSize: "25px",
   };
 
   const subheadingStyle = {
     color: "Green",
     marginBottom: "20px",
     fontFamily: "Poppins",
-    fontSize: "15px",
+    fontSize: "18px",
   };
 
   const tableStyle = {
@@ -216,15 +216,15 @@ const Dashboard = () => {
   };
 
   const tableContainerStyle = {
-    width: "100%",
+    width: "70%",
     padding: "20px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     borderRadius: "12px",
   };
   const tableHeaderStyle = {
-    backgroundColor: " rgba(34, 193, 195, 1)",
+    backgroundColor: " rgb(8, 97, 99)",
     color: "white",
-    textAlign: "center",
+    textAlign: "left",
     padding: "10px",
   };
 
@@ -240,10 +240,16 @@ const Dashboard = () => {
     border: "1px solid #ddd",
     color: "black",
   };
-
+  const tableContainerStyleM = {
+    width: "100%",
+    padding: "20px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    borderRadius: "12px",
+    marginTop: "10px",
+  };
   const buttonStyle = {
     marginTop: "10px",
-    background: "rgba(34, 193, 195, 1)",
+    background: "#8fbba8",
     color: "white",
     border: "none",
     borderRadius: "5px",
@@ -251,6 +257,20 @@ const Dashboard = () => {
     marginLeft: "5px",
     marginRight: "5px",
     outline: "none",
+  };
+
+  const tableButtonStyle = {
+    marginTop: "10px",
+    background: " rgb(8, 97, 99)",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    fontFamily: "Poppins",
+    marginLeft: "5px",
+    marginRight: "5px",
+    outline: "none",
+    padding: "5px",
+    width: "70%",
   };
 
   const progressBarStyle = {
@@ -270,7 +290,6 @@ const Dashboard = () => {
   });
 
   return (
-
     <div style={homeContainerStyle}>
       <div className="container" style={containerStyle}>
         <div style={headingContainerStyle}>
@@ -281,26 +300,6 @@ const Dashboard = () => {
           </p>
           <button
             className="btn btn-primary"
-            onClick={toggleDetails}
-            style={buttonStyle}
-          >
-            {showDetails ? "Hide Details" : "Show Details"}
-          </button>
-        </div>
-
-        {/* Conditional rendering of workout details */}
-        {showDetails && (
-
-    <div className="container" style={containerStyle}>
-      {/* Left Side: Workouts and Progress */}
-      <div style={leftContainerStyle}>
-        <div style={headingContainerStyle}>
-          <h1 style={headingStyle}>Workouts</h1>
-          <p style={subheadingStyle}>
-            Number of workouts for today: {workouts.length}
-          </p>
-          <button
-            className="btn btn-primary"
             onClick={toggleWorkoutDetails}
             style={buttonStyle}
           >
@@ -308,8 +307,9 @@ const Dashboard = () => {
           </button>
         </div>
 
-        {showWorkoutDetails && (
+        {/* Conditional rendering of workout details */}
 
+        {showWorkoutDetails && (
           <div style={tableContainerStyle}>
             {loading ? (
               <p>Loading workouts...</p>
@@ -349,14 +349,14 @@ const Dashboard = () => {
                       <td style={tableCellStyle}>
                         {editingWorkoutId === workout.id ? (
                           <button
-                            style={buttonStyle}
+                            style={tableButtonStyle}
                             onClick={() => handleSaveDuration(workout.id)}
                           >
                             Save
                           </button>
                         ) : (
                           <button
-                            style={buttonStyle}
+                            style={tableButtonStyle}
                             onClick={() =>
                               handleEdit(workout.id, workout.duration)
                             }
@@ -365,7 +365,7 @@ const Dashboard = () => {
                           </button>
                         )}
                         <button
-                          style={buttonStyle}
+                          style={tableButtonStyle}
                           onClick={() => handleDelete(workout.id)}
                         >
                           Delete
@@ -379,7 +379,7 @@ const Dashboard = () => {
                           <>
                             {""}
                             <button
-                              style={buttonStyle}
+                              style={tableButtonStyle}
                               onClick={() =>
                                 handleStatusUpdate(workout.id, !workout.status)
                               }
@@ -392,25 +392,25 @@ const Dashboard = () => {
                     </tr>
                   ))}
                 </tbody>
-                {message && <p style={{ color: "white" }}>{message}</p>}
+                {message && (
+                  <p
+                    style={{
+                      color: "white",
+                      marginTop: "15px",
+                      background: " rgb(8, 97, 99)",
+                      padding: "5px",
+                      borderRadius: "5px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {message}
+                  </p>
+                )}
               </table>
             )}
           </div>
         )}
 
-
-        <div style={headingContainerStyle}>
-          <h1 style={headingStyle}>Crush Limits</h1>
-          <p style={subheadingStyle}>Click here to add a new workout (+) </p>
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate("/workout")}
-            style={buttonStyle}
-          >
-            Click Here
-          </button>
-        </div>
-
         <div style={headingContainerStyle}>
           <h2 style={headingStyle}>Your Progress</h2>
           <p style={subheadingStyle}>
@@ -427,15 +427,6 @@ const Dashboard = () => {
         </div>
 
         <div style={headingContainerStyle}>
-          <h2 style={headingStyle}>Your Weekly Progress</h2>
-          <p style={subheadingStyle}>Total Calories Burned Weekly : {}</p>
-          <p style={subheadingStyle}>
-            {" "}
-            Total Calories Planned for the Week: {}
-          </p>
-
-
-        <div style={headingContainerStyle}>
           <h1 style={headingStyle}>Crush Limits</h1>
           <p style={subheadingStyle}>Click here to add a new workout (+) </p>
           <button
@@ -447,33 +438,6 @@ const Dashboard = () => {
           </button>
         </div>
 
-        <div style={headingContainerStyle}>
-          <h2 style={headingStyle}>Your Progress</h2>
-          <p style={subheadingStyle}>
-            Total Calories Burned: {totalCaloriesTrue}
-          </p>
-          <p style={subheadingStyle}>
-            {" "}
-            Total Calories Planned: {totalCalories}
-          </p>
-          <div style={progressBarStyle}>
-            <div style={progressFillStyle(progressPercentage)}></div>
-          </div>
-          <p>{progressPercentage}% of your goal achieved</p>
-        </div>
-
-        <div style={headingContainerStyle}>
-          <h2 style={headingStyle}>Your Weekly Progress</h2>
-          <p style={subheadingStyle}>Total Calories Burned Weekly : {}</p>
-          <p style={subheadingStyle}>
-            {" "}
-            Total Calories Planned for the Week: {}
-          </p>
-        </div>
-      </div>
-
-      {/* Displaying Selected Meals */}
-      <div style={{ ...rightContainerStyle, width: "1280px", height: "400px" }}>
         <div style={headingContainerStyle}>
           <h2 style={headingStyle}>Selected Meals</h2>
           {loading ? (
@@ -489,8 +453,9 @@ const Dashboard = () => {
               >
                 {showMealDetails ? "Hide Details" : "Show Details"}
               </button>
+
               {showMealDetails && (
-                <div style={tableContainerStyle}>
+                <div style={tableContainerStyleM}>
                   {loading ? (
                     <p>Loading meal plans...</p>
                   ) : error ? (
@@ -529,7 +494,7 @@ const Dashboard = () => {
                             <td style={tableCellStyleM}>
                               {editingMealId === meal.id ? (
                                 <button
-                                  style={buttonStyle}
+                                  style={tableButtonStyle}
                                   onClick={() =>
                                     handleSaveMealLocal(
                                       meal.id,
@@ -542,7 +507,7 @@ const Dashboard = () => {
                                 </button>
                               ) : (
                                 <button
-                                  style={buttonStyle}
+                                  style={tableButtonStyle}
                                   onClick={() =>
                                     handleEditMealLocal(
                                       meal.id,
@@ -556,7 +521,7 @@ const Dashboard = () => {
                               )}
 
                               <button
-                                style={buttonStyle}
+                                style={tableButtonStyle}
                                 onClick={() => handleDeleteMealLocal(meal.id)}
                               >
                                 Delete
@@ -565,14 +530,26 @@ const Dashboard = () => {
                           </tr>
                         ))}
                       </tbody>
-                      {message && <p style={{ color: "blue" }}>{message}</p>}
+                      {message && (
+                        <p
+                          style={{
+                            color: "white",
+                            marginTop: "15px",
+                            background: " rgb(8, 97, 99)",
+                            padding: "5px",
+                            borderRadius: "5px",
+                            textAlign: "center",
+                          }}
+                        >
+                          {message}
+                        </p>
+                      )}
                     </table>
                   )}
                 </div>
               )}
             </>
           )}
-
         </div>
       </div>
     </div>
