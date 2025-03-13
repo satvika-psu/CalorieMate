@@ -8,7 +8,7 @@ const MealPlan = () => {
   const [mealPlan, setMealPlan] = useState({});
   const [selectedMeals, setSelectedMeals] = useState({});
   const [showSelectedRecipes, setShowSelectedRecipes] = useState(false);
-  const [expandedMeals, setExpandedMeals] = useState({}); // Track expanded state for each meal
+  const [expandedMeals, setExpandedMeals] = useState({});
   const { userEmail } = useContext(UserContext);
 
   const mealTypes = ["Breakfast", "Lunch", "Main Dish", "Snack", "Dessert"];
@@ -125,23 +125,39 @@ const MealPlan = () => {
         <div className="meal-plan-left">
           <div className="input-container">
             <div className="search-box">
-              <span className="label">I want to eat</span>
+              <label htmlFor="calories-input" className="input-label">
+                I want to eat
+              </label>
               <input
                 type="number"
+                id="calories-input"
                 placeholder="Enter calories"
                 className="input-field"
                 value={calories}
                 onChange={(e) => setCalories(Number(e.target.value))}
+                style={{ width: "350px", margin: "5px" }}
               />
-              <span>in</span>
+              <label
+                htmlFor="meals-dropdown"
+                className="meal-input-label"
+                style={{
+                  fontSize: "16px",
+                  marginRight: "0px",
+                  width: "150px",
+                }}
+              >
+                in number of Meals
+              </label>
               <select
+                id="meals-dropdown"
                 className="dropdown"
                 value={mealsCount}
                 onChange={(e) => setMealsCount(Number(e.target.value))}
+                style={{ width: "50px", margin: "5px" }}
               >
                 {[2, 3, 4, 5].map((num) => (
                   <option key={num} value={num}>
-                    {num} Meals
+                    {num}
                   </option>
                 ))}
               </select>
@@ -157,19 +173,31 @@ const MealPlan = () => {
               mealPlan[mealType] && (
                 <div key={mealType} className="meal-container">
                   <h3 className="meal-title">{mealType}</h3>
-                  {mealPlan[mealType].map((meal, index) => (
-                    <div key={index} className="meal-option">
-                      <input
-                        type="checkbox"
-                        name={mealType}
-                        value={meal.title}
-                        checked={selectedMeals[mealType] === meal.title}
-                        onChange={() => handleSelectMeal(mealType, meal.title)}
-                      />
-                      <span className="meal-name">{meal.title}</span>
-                      <span className="meal-info">({meal.calories} cal)</span>
-                    </div>
-                  ))}
+                  <fieldset>
+                    <legend style={{ fontSize: "1rem", color: "black" }}>
+                      {mealType} Options
+                    </legend>{" "}
+                    {/* Add a descriptive legend */}
+                    {mealPlan[mealType].map((meal, index) => (
+                      <div key={index} className="meal-option">
+                        <label>
+                          <input
+                            type="checkbox"
+                            name={mealType}
+                            value={meal.title}
+                            checked={selectedMeals[mealType] === meal.title}
+                            onChange={() =>
+                              handleSelectMeal(mealType, meal.title)
+                            }
+                          />
+                          <span className="meal-name">{meal.title}</span>
+                          <span className="meal-info">
+                            ({meal.calories} cal)
+                          </span>
+                        </label>
+                      </div>
+                    ))}
+                  </fieldset>
                 </div>
               )
           )}

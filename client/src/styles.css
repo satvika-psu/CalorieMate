@@ -50,17 +50,27 @@ body {
   background-color: #f5f5f5;
   min-height: 150vh;
   max-width: 100%;
-  background: linear-gradient(
-    45deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(22, 93, 112, 1) 100%
+  background-image: linear-gradient(
+    to right top,
+    #fdcfbf,
+    #ebcbb0,
+    #d7c7a7,
+    #c2c3a2,
+    #adbea1,
+    #a3bda2,
+    #99bca5,
+    #8fbba8,
+    #8bbfac,
+    #86c2b1,
+    #81c6b6,
+    #7bc9bc
   );
 }
 
 .meal-plan-title {
   display: flex;
   justify-content: center;
-  font-size: 25px;
+  font-size: 27px;
   color: white;
   margin-top: 40px;
   margin-bottom: 30px;
@@ -187,7 +197,11 @@ body {
 
 .get-details-btn,
 .save-button {
-  background: rgb(10, 149, 149);
+  background-image: linear-gradient(
+    to right top,
+    rgb(106, 146, 104),
+    rgb(81, 119, 94)
+  );
   color: white;
   border: none;
   padding: 12px 24px;
@@ -201,7 +215,11 @@ body {
 }
 
 .add-recipe-btn {
-  background: rgb(3, 101, 101);
+  background-image: linear-gradient(
+    to right top,
+    rgb(106, 146, 104),
+    rgb(81, 119, 94)
+  );
   color: white;
   border: none;
   padding: 12px 24px;
@@ -219,7 +237,11 @@ body {
 }
 
 .save-button {
-  background: rgb(9, 130, 130);
+  background-image: linear-gradient(
+    to right top,
+    rgb(106, 146, 104),
+    rgb(81, 119, 94)
+  );
   width: 120px;
   height: 50px;
   font-weight: bold;
@@ -249,7 +271,11 @@ body {
   width: 100px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: rgb(0, 128, 128);
+  background-image: linear-gradient(
+    to right top,
+    rgb(106, 146, 104),
+    rgb(81, 119, 94)
+  );
   cursor: pointer;
 }
 
@@ -276,6 +302,12 @@ body {
   width: 100%;
 }
 
+.input-label {
+  font-size: 16px;
+  color: #0e0e0e;
+  width: 100px;
+}
+
 .input-field {
   padding: 10px;
   border: 1px solid #ccc;
@@ -286,6 +318,13 @@ body {
   outline: none;
   width: 80px;
 }
+
+.static-text {
+  font-size: 16px;
+  color: #333;
+  margin: 0 10px;
+}
+
 .dropdown {
   padding: 10px;
   border: 1px solid #ccc;
@@ -294,6 +333,7 @@ body {
   background-color: white;
   cursor: pointer;
   outline: none;
+  width: 80px;
 }
 
 .search-box .label {
@@ -355,6 +395,7 @@ body {
   font-weight: 600;
   color: #374151;
   font-size: 0.9rem;
+  margin: 10px;
 }
 
 .meal-info {
@@ -380,24 +421,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.edit-btn {
-  background-color: #ffc107; /* Yellow for Edit */
-  color: #000;
-}
-
-.edit-btn:hover {
-  background-color: #e0a800; /* Darker yellow on hover */
-}
-
-.delete-btn {
-  background-color: #dc3545; /* Red for Delete */
-  color: #fff;
-}
-
-.delete-btn:hover {
-  background-color: #c82333; /* Darker red on hover */
-}
-
 /*Styles for Browse Food */
 .browse-food-container {
   display: flex;
@@ -406,10 +429,20 @@ body {
   justify-content: flex-start;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  background: linear-gradient(
-    45deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(22, 93, 112, 1) 100%
+  background-image: linear-gradient(
+    to right top,
+    #fdcfbf,
+    #ebcbb0,
+    #d7c7a7,
+    #c2c3a2,
+    #adbea1,
+    #a3bda2,
+    #99bca5,
+    #8fbba8,
+    #8bbfac,
+    #86c2b1,
+    #81c6b6,
+    #7bc9bc
   );
   padding: 20px;
 }
@@ -428,16 +461,25 @@ body {
   border: 2px solid #ccc;
   border-radius: 5px 0 0 5px;
   outline: none;
-  width: 750px;
+  width: 510px;
   max-width: 1000px;
-  margin: 0px;
+  margin: 10px;
+}
+
+.food-label {
+  font-size: 16px;
+  color: black;
 }
 
 .search-box button {
   padding: 10px 15px;
   font-size: 15px;
   border: none;
-  background-color: rgb(0, 128, 128);
+  background-image: linear-gradient(
+    to right top,
+    rgb(106, 146, 104),
+    rgb(81, 119, 94)
+  );
   color: white;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -631,11 +673,11 @@ body {
 .calories-info h3 {
   font-size: 19px;
   font-weight: bold;
-  color: rgb(245, 245, 11);
+  color: rgb(136, 3, 3);
 }
 
 .browse-food-title {
-  font-size: 25px;
+  font-size: 27px;
   font-weight: bold;
   color: white;
   margin-top: 40px;
