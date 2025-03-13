@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Signin from "./Signin";
+import backgroundImage from "../images/background.png";
 const Home = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Home = () => {
     letterSpacing: "0.5em ",
     textAlign: "center",
     color: "green",
+    fontWeight: "bold",
   };
 
   const taglinestyle = {
@@ -31,6 +33,7 @@ const Home = () => {
     marginBottom: 10,
     lineHeight: "1.5em",
     letterSpacing: "0.25em",
+    fontWeight: "bold",
   };
 
   const buttonStyle = {
@@ -47,29 +50,39 @@ const Home = () => {
 
   const descriptionstyle = {
     fontFamily: "Poppins",
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "center",
-    color: "white",
+    color: "rgb(255,127,80)",
     marginTop: 10,
     marginBottom: 10,
     lineHeight: "1.5em",
   };
 
-  const homeContainerStyle = {
+  const pageContainerStyle = {
+    height: "100vh", // Full viewport height
+    backgroundImage: `url(${backgroundImage})`, // Set the background image here
+    backgroundSize: "cover", // Ensure the image covers the entire page
+    backgroundPosition: "center", // Center the image
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
-    height: "50vh",
+  };
+
+  const homeContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    marginTop: "-25vh",
   };
 
   const signInContainerStyle = {
-    display: showSignIn ? "block" : "none", // Display sign-in form based on state
+    display: showSignIn ? "block" : "none",
     position: "absolute",
-    top: "30%",
+    top: "40%",
     left: "80%",
     transform: "translate(-30%, -50%)",
     width: "300px",
@@ -79,11 +92,11 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div style={pageContainerStyle}>
       {/* Home page container */}
       <div style={homeContainerStyle}>
         <div>
-          <p style={descriptionstyle}>welcome to </p>
+          <p style={descriptionstyle}>Welcome to </p>
           <h1 style={titlestyle}>CALORIEMATE</h1>
           <p style={taglinestyle}>
             Track Nutrition, Plan Meals, Crush Workouts
@@ -100,7 +113,7 @@ const Home = () => {
                 textDecoration: "underline",
                 marginLeft: 5,
                 marginTop: 5,
-                fontSize: 16,
+                fontSize: 18,
                 cursor: "pointer",
               }}
               onClick={() => setShowSignIn(true)}

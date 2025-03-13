@@ -24,9 +24,13 @@ export default function Signup() {
       });
 
       if (response.status === 200) {
-        setSuccessMessage("Signup successful! Please log in.");
+        setSuccessMessage("Signup Successful! Please sign in now!!");
         setUserEmail(email);
-        navigate("/dashboard");
+
+        // Optional: Delay the navigation to allow time to show success message
+        setTimeout(() => {
+          navigate("/");
+        }, 4000);
       }
     } catch (error) {
       setError(
@@ -42,18 +46,18 @@ export default function Signup() {
     height: "100vh",
     width: "100%",
     //maxWidth: "400px",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    backgroundImage:
+      "linear-gradient(to right top, #fdcfbf, #ebcbb0, #d7c7a7, #c2c3a2, #adbea1, #a3bda2, #99bca5, #8fbba8, #8bbfac, #86c2b1, #81c6b6, #7bc9bc)",
   };
 
   const formStyle = {
+    marginTop: "150px",
     padding: "3rem",
     borderRadius: "10px",
     //boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
     width: "100%",
     maxWidth: "600px",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    background: " #d4edda",
   };
 
   const headingStyle = {
@@ -61,7 +65,7 @@ export default function Signup() {
     textAlign: "center",
     fontSize: "2rem",
     marginBottom: "2rem",
-    color: "White",
+    color: "green",
   };
 
   const inputStyle = {
@@ -72,20 +76,19 @@ export default function Signup() {
     border: "whitesmoke",
     fontSize: "1rem",
     fontFamily: "Poppins",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    background: "white",
   };
   const buttonStyle = {
     width: "100%",
     padding: "0.8rem",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
-    color: "#fff",
+    background: "green",
+    color: "white",
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
     fontSize: "1rem",
     fontFamily: "Poppins",
+    marginBottom: "1rem",
   };
 
   return (
@@ -127,18 +130,35 @@ export default function Signup() {
             />
           </div>
 
+          <button type="submit" style={buttonStyle}>
+            Sign Up
+          </button>
           {error && (
             <p style={{ color: "red", textAlign: "center" }}>{error}</p>
           )}
           {successMessage && (
-            <p style={{ color: "green", textAlign: "center" }}>
+            <p
+              style={{
+                color: "green",
+                backgroundColor: "white",
+                padding: "5px",
+                borderRadius: "5px",
+                textAlign: "center",
+                //margin: "10px 0",
+                fontFamily: "Poppins",
+              }}
+            >
               {successMessage}
             </p>
           )}
-          <button type="submit" style={buttonStyle}>
-            Sign Up
-          </button>
-          <p style={{ fontFamily: "Poppins", color: "white", marginTop: 5 }}>
+          <p
+            style={{
+              fontFamily: "Poppins",
+              color: "green",
+              marginTop: 5,
+              fontSize: 18,
+            }}
+          >
             Already have an account?{""}
             <Link
               to="/"
@@ -148,7 +168,7 @@ export default function Signup() {
                 textDecoration: "underline",
                 marginLeft: 5,
                 marginTop: 5,
-                fontSize: 16,
+                fontSize: 18,
               }}
             >
               Sign in
