@@ -24,7 +24,7 @@ const Signin = () => {
       if (response.status === 200) {
         // Update the context with the signed-in user's email
         setUserEmail(email);
-        navigate("/dashboard");
+        navigate("/browsefood");
       }
     } catch (error) {
       setError(
@@ -40,8 +40,6 @@ const Signin = () => {
     height: "10vh",
     width: "150%",
     maxWidth: "800px",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 0%)",
   };
 
   const formStyle = {
@@ -49,8 +47,8 @@ const Signin = () => {
     borderRadius: "10px",
     width: "100%",
     maxWidth: "800px",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 40%)",
+    backgroundImage:
+      "linear-gradient(to right top, #c2c3a2, #adbea1, #a3bda2, #adbea1)",
   };
 
   const headingStyle = {
@@ -69,15 +67,14 @@ const Signin = () => {
     border: "whitesmoke",
     fontSize: "1rem",
     fontFamily: "Poppins",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+
+    background: "white",
   };
 
   const buttonStyle = {
     width: "100%",
     padding: "0.8rem",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    background: "green",
     color: "#fff",
     border: "none",
     borderRadius: "4px",

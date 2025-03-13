@@ -19,7 +19,6 @@ const WorkoutPlanDisplay = ({ workoutPlan, setWorkoutPlan, userEmail }) => {
   const navigate = useNavigate();
 
   // Function to Save Workout
-
   const handleSaveWorkout = async (workoutType) => {
     if (!userEmail) {
       setErrorMessages((prev) => ({
@@ -84,7 +83,7 @@ const WorkoutPlanDisplay = ({ workoutPlan, setWorkoutPlan, userEmail }) => {
   });
 
   const cardImageStyle = () => ({
-    height: "300px",
+    height: "350px",
     objectFit: "cover",
     borderRadius: "10px 10px 0 0",
   });
@@ -101,20 +100,22 @@ const WorkoutPlanDisplay = ({ workoutPlan, setWorkoutPlan, userEmail }) => {
   const buttonStyle = () => ({
     width: "100%",
     padding: "0.8rem",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    backgroundImage:
+      "linear-gradient(to right top,rgb(106, 146, 104),rgb(81, 119, 94))",
+
     color: "#fff",
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
-    fontSize: "1rem",
+    fontSize: "18px",
     fontFamily: "Poppins",
   });
 
   const messageStyle = (type) => ({
     color: type === "success" ? "green" : "red",
-    fontSize: "14px",
-    marginTop: "10px",
+    fontSize: "16px",
+    marginTop: "20px",
+    textAlign: "center",
   });
   const handleViewWorkouts = () => {
     navigate("/dashboard");
@@ -122,7 +123,10 @@ const WorkoutPlanDisplay = ({ workoutPlan, setWorkoutPlan, userEmail }) => {
 
   return (
     <div className="workout-plan mt-4">
-      <h2 className="mb-3" style={{ color: "white" }}>
+      <h2
+        className="mb-3"
+        style={{ color: "white", textAlign: "center", padding: "10px" }}
+      >
         Workout Plan for the Day
       </h2>
       <div className="row">

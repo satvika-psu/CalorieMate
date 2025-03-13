@@ -16,18 +16,18 @@ const WorkoutForm = ({ setWorkoutPlan, userEmail }) => {
   const [error, setError] = useState("");
 
   const availableWorkouts = [
-    "running",
-    "cycling",
-    "swimming",
-    "jogging",
-    "dancing",
-    "badminton",
-    "tennis",
-    "boxing",
-    "basketball",
-    "volleyball",
-    "baseball",
-    "yoga",
+    "RUNNING",
+    "CYCLING",
+    "SWIMMING",
+    "JOGGING",
+    "DANCING",
+    "BADMINTON",
+    "TENNIS",
+    "BOXING",
+    "BASKETBALL",
+    "VOLLEYBALL",
+    "BASEBALL",
+    "YOGA",
   ];
 
   const handleSubmit = async (e) => {
@@ -38,8 +38,8 @@ const WorkoutForm = ({ setWorkoutPlan, userEmail }) => {
       return;
     }
 
-    if (workoutTypes.length > 3) {
-      setError("You can select up to 3 workout activities.");
+    if (workoutTypes.length > 6) {
+      setError("You can select up to 6 workout activities.");
       return;
     }
     // Get today's date
@@ -75,7 +75,7 @@ const WorkoutForm = ({ setWorkoutPlan, userEmail }) => {
     if (workoutTypes.includes(workout)) {
       // Deselect workout
       setWorkoutTypes(workoutTypes.filter((w) => w !== workout));
-    } else if (workoutTypes.length < 3) {
+    } else if (workoutTypes.length < 6) {
       // Select workout if less than 3 are selected
       setWorkoutTypes([...workoutTypes, workout]);
     }
@@ -85,32 +85,36 @@ const WorkoutForm = ({ setWorkoutPlan, userEmail }) => {
   const buttonStyle = () => ({
     width: "100%",
     padding: "0.8rem",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    backgroundImage:
+      "linear-gradient(to right top,rgb(106, 146, 104),rgb(81, 119, 94))",
     color: "#fff",
     border: "none",
     borderRadius: "4px",
     cursor: "pointer",
-    fontSize: "15px",
+    fontSize: "20px",
     fontFamily: "Poppins",
   });
 
   const formContainerStyle = () => ({
-    //background:"linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
     borderRadius: "10px",
     padding: "20px",
     color: "white",
     fontFamily: "Poppins",
-    fontSize: "18px",
+    fontSize: "20px",
+    marginTop: "15px",
   });
 
   const inputStyle = () => ({
     borderRadius: "5px",
     fontFamily: "Poppins",
-    background:
-      "linear-gradient(45deg, rgba(34,193,195,1) 0%, rgba(22,93,112,1) 100%)",
+    backgroundImage:
+      "linear-gradient(to right top, #adbea1, #a3bda2, #99bca5, #8fbba8, #8bbfac, #86c2b1, #81c6b6, #7bc9bc)",
+
     padding: "10px",
     marginBottom: "10px",
+
+    fontSize: "18px",
+    fontWeight: "500",
   });
 
   const workoutCardStyle = (workoutTypes, workout) => ({

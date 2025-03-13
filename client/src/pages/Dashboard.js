@@ -152,6 +152,13 @@ const Dashboard = () => {
   );
 
   //Styles
+  const homeContainerStyle = {
+    height: "200vh",
+    padding: "20px",
+    width: "100%",
+    backgroundImage:
+      "linear-gradient(to right top, #fdcfbf, #ebcbb0, #d7c7a7, #c2c3a2, #adbea1, #a3bda2, #99bca5, #8fbba8, #8bbfac, #86c2b1, #81c6b6, #7bc9bc)",
+  };
   const containerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -162,6 +169,7 @@ const Dashboard = () => {
     width: "100%",
     marginTop: "20px",
     marginLeft: "100px",
+    background: "transparent",
   };
 
   const leftContainerStyle = {
@@ -262,6 +270,27 @@ const Dashboard = () => {
   });
 
   return (
+
+    <div style={homeContainerStyle}>
+      <div className="container" style={containerStyle}>
+        <div style={headingContainerStyle}>
+          <h1 style={headingStyle}>Workouts</h1>
+          <p style={subheadingStyle}>
+            Number of workouts for today:{" "}
+            {workouts.filter((workout) => !workout.status).length}
+          </p>
+          <button
+            className="btn btn-primary"
+            onClick={toggleDetails}
+            style={buttonStyle}
+          >
+            {showDetails ? "Hide Details" : "Show Details"}
+          </button>
+        </div>
+
+        {/* Conditional rendering of workout details */}
+        {showDetails && (
+
     <div className="container" style={containerStyle}>
       {/* Left Side: Workouts and Progress */}
       <div style={leftContainerStyle}>
@@ -280,6 +309,7 @@ const Dashboard = () => {
         </div>
 
         {showWorkoutDetails && (
+
           <div style={tableContainerStyle}>
             {loading ? (
               <p>Loading workouts...</p>
@@ -303,6 +333,7 @@ const Dashboard = () => {
                     <tr key={index}>
                       <td style={tableCellStyle}>{workout.date}</td>
                       <td style={tableCellStyle}>{workout.workouttype}</td>
+
                       <td style={tableCellStyle}>
                         {editingWorkoutId === workout.id ? (
                           <input
@@ -340,6 +371,7 @@ const Dashboard = () => {
                           Delete
                         </button>
                       </td>
+
                       <td style={tableCellStyle}>
                         {workout.status ? (
                           "✔️ Accomplished"
@@ -365,6 +397,43 @@ const Dashboard = () => {
             )}
           </div>
         )}
+
+
+        <div style={headingContainerStyle}>
+          <h1 style={headingStyle}>Crush Limits</h1>
+          <p style={subheadingStyle}>Click here to add a new workout (+) </p>
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate("/workout")}
+            style={buttonStyle}
+          >
+            Click Here
+          </button>
+        </div>
+
+        <div style={headingContainerStyle}>
+          <h2 style={headingStyle}>Your Progress</h2>
+          <p style={subheadingStyle}>
+            Total Calories Burned: {totalCaloriesTrue}
+          </p>
+          <p style={subheadingStyle}>
+            {" "}
+            Total Calories Planned: {totalCalories}
+          </p>
+          <div style={progressBarStyle}>
+            <div style={progressFillStyle(progressPercentage)}></div>
+          </div>
+          <p>{progressPercentage}% of your goal achieved</p>
+        </div>
+
+        <div style={headingContainerStyle}>
+          <h2 style={headingStyle}>Your Weekly Progress</h2>
+          <p style={subheadingStyle}>Total Calories Burned Weekly : {}</p>
+          <p style={subheadingStyle}>
+            {" "}
+            Total Calories Planned for the Week: {}
+          </p>
+
 
         <div style={headingContainerStyle}>
           <h1 style={headingStyle}>Crush Limits</h1>
@@ -503,6 +572,7 @@ const Dashboard = () => {
               )}
             </>
           )}
+
         </div>
       </div>
     </div>
