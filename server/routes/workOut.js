@@ -16,10 +16,10 @@ router.post("/", async (req, res) => {
   if (!calories || !workoutTypes || !Array.isArray(workoutTypes)) {
     return res.status(400).json({ error: "Invalid input data" });
   }
-  if (workoutTypes.length > 3) {
+  if (workoutTypes.length > 6) {
     return res
       .status(400)
-      .json({ error: "Please select up to 3 activities only." });
+      .json({ error: "Please select up to 6 activities only." });
   }
   const workoutPlan = {};
 
