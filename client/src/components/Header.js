@@ -11,7 +11,7 @@ const Header = () => {
     <Navbar
       expand="lg"
       style={{
-        background: "#2C3E50",
+        background: "#467d74",
         color: "white",
       }}
     >

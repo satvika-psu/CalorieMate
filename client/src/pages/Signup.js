@@ -91,25 +91,30 @@ export default function Signup() {
     marginBottom: "1rem",
   };
 
+  // Screen reader only style for hidden labels
+  const srOnlyStyle = {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    padding: 0,
+    margin: "-1px",
+    overflow: "hidden",
+    clip: "rect(0, 0, 0, 0)",
+    border: 0,
+  };
+
   return (
     <div>
       <div style={containerStyle}>
         <form style={formStyle} onSubmit={handleSignup}>
           <h1 style={headingStyle}>Signup Today</h1>
-          {/*<div>
-            <label>Name:</label>
-            <input
-              type="text"
-              value={username}
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              style={inputStyle}
-              required
-            />
-          </div>*/}
           <div>
-            {/*<label>Email:</label>*/}
+            <label htmlFor="email" style={srOnlyStyle}>
+              Email
+            </label>
+
             <input
+              id="email"
               type="email"
               value={email}
               placeholder="Email"
@@ -119,8 +124,11 @@ export default function Signup() {
             />
           </div>
           <div>
-            {/*<label>Password:</label>*/}
+            <label htmlFor="password" style={srOnlyStyle}>
+              Password
+            </label>
             <input
+              id="password"
               type="password"
               value={password}
               placeholder="Password"
@@ -154,7 +162,7 @@ export default function Signup() {
           <p
             style={{
               fontFamily: "Poppins",
-              color: "green",
+              color: "rgb(0, 64, 0)",
               marginTop: 5,
               fontSize: 18,
             }}
