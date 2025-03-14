@@ -26,6 +26,7 @@ const Dashboard = () => {
   const [newDuration, setNewDuration] = useState("");
   const [newServing, setServing] = useState("");
   const [message, setMessage] = useState("");
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   // Fetch workouts and selected meals on component mount
@@ -65,9 +66,9 @@ const Dashboard = () => {
     try {
       await deleteWorkout(workoutId);
       setWorkouts(await fetchWorkouts(userEmail));
-      setMessage("Workout Deleted Sucessfully!!");
+      setMsg("Workout Deleted Sucessfully!!");
       setTimeout(() => {
-        setMessage("");
+        setMsg("");
       }, 5000);
     } catch (err) {
       console.error(err.message);
@@ -85,10 +86,10 @@ const Dashboard = () => {
     try {
       await updateWorkoutDuration(workoutId, newDuration);
       setWorkouts(await fetchWorkouts(userEmail));
-      setMessage("Workout Updated Sucessfully!!");
+      setMsg("Workout Updated Sucessfully!!");
       setEditingWorkoutId(null);
       setTimeout(() => {
-        setMessage("");
+        setMsg("");
       }, 5000);
     } catch (err) {
       console.error(err.message);
@@ -395,7 +396,7 @@ const Dashboard = () => {
                     </tr>
                   ))}
                 </tbody>
-                {message && (
+                {msg && (
                   <p
                     style={{
                       color: "white",
@@ -406,7 +407,7 @@ const Dashboard = () => {
                       textAlign: "center",
                     }}
                   >
-                    {message}
+                    {msg}
                   </p>
                 )}
               </table>
