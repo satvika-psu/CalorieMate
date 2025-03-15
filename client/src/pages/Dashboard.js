@@ -167,7 +167,7 @@ const Dashboard = () => {
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    height: "200vh",
+    height: "350vh",
     padding: "20px",
     width: "100%",
     backgroundImage:
