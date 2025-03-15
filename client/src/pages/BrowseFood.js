@@ -24,6 +24,11 @@ ChartJS.register(
   ArcElement
 );
 
+const backendUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://caloriemate-server.vercel.app"
+    : "http://localhost:5000";
+
 const BrowseFood = () => {
   const [food, setFood] = useState("");
   const [foodData, setFoodData] = useState(null);
@@ -38,7 +43,7 @@ const BrowseFood = () => {
 
     try {
       const nutritionResponse = await axios.get(
-        "http://localhost:5000/api/browsefood",
+        `${backendUrl}/api/browsefood`,
         {
           params: { query: food },
         }
@@ -47,7 +52,7 @@ const BrowseFood = () => {
 
       try {
         const mealImageResponse = await axios.get(
-          "http://localhost:5000/api/mealimage/mealimage",
+          `${backendUrl}/api/mealimage/mealimage`,
           {
             params: { query: food },
           }

@@ -12,11 +12,16 @@ const Signin = () => {
   // Get the context value to update the userEmail
   const { setUserEmail } = useContext(UserContext);
 
+  const backendUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://caloriemate-server.vercel.app"
+      : "http://localhost:5000";
+
   const handleSignin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/api/signin", {
+      const response = await axios.post(`${backendUrl}/api/signin`, {
         email,
         password,
       });

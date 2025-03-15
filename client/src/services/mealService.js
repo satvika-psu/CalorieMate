@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api/savemealplan"; // Base URL for your API
+const backendUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://caloriemate-server.vercel.app"
+    : "http://localhost:5000";
+
+const API_BASE_URL = `${backendUrl}/api/savemealplan`; // Base URL for your API
 
 // Function to save selected meals
 export const saveSelectedMeals = async (selectedMeals, mealPlan, userEmail) => {

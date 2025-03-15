@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/api/workout";
+const backendUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://caloriemate-server.vercel.app"
+    : "http://localhost:5000";
+
+const API_BASE_URL = `${backendUrl}/api/workout`;
 
 // Create or Save a new workout
 export const saveWorkout = async (workoutData) => {

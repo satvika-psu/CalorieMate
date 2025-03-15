@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const backendUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://caloriemate-server.vercel.app"
+    : "http://localhost:5000";
+
 // Function to dynamically get image path based on workout type
 const getImagePath = (workoutType) => {
   try {
@@ -49,7 +54,7 @@ const WorkoutForm = ({ setWorkoutPlan, userEmail }) => {
     console.log("Today's date:", today);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/workout", {
+      const response = await axios.post(`${backendUrl}/api/workout`, {
         email: userEmail,
         calories: parseInt(calories),
         workoutTypes,

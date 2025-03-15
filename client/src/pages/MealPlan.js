@@ -13,6 +13,11 @@ const MealPlan = () => {
 
   const mealTypes = ["Breakfast", "Lunch", "Main Dish", "Snack", "Dessert"];
 
+  const backendUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://caloriemate-server.vercel.app"
+      : "http://localhost:5000";
+
   // Fetch meal plan from the backend
   const handleGenerateMealPlan = async () => {
     if (!calories || calories <= 0) {
@@ -21,7 +26,7 @@ const MealPlan = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/mealplan", {
+      const response = await axios.post(`${backendUrl}/api/mealplan`, {
         calories: calories,
         mealsCount: mealsCount,
         mealTypes: mealTypes.slice(0, mealsCount),
@@ -90,14 +95,11 @@ const MealPlan = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/savemealplan",
-        {
-          selectedMeals,
-          mealPlan,
-          userEmail,
-        }
-      );
+      const response = await axios.post(`${backendUrl}/api/savemealplan`, {
+        selectedMeals,
+        mealPlan,
+        userEmail,
+      });
 
       if (response.status === 200) {
         //alert("Meal plan saved successfully!");
