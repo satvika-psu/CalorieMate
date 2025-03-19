@@ -1,21 +1,27 @@
-#CALORIEMATE APP
+# CALORIEMATE APP
 
-#React- Node Project
+# React-Node Project
 
-#To run:
+# Start the Server:
 
-#cd into server
+ * Open a terminal and cd into the server directory.
 
-#node index.js
+ * Run the server with node index.js
 
-#open a new terminal
+# Start the Client:
 
-#cd into client
+ * Open a new terminal and cd into the client directory.
 
-npm i
+ * Install dependencies with npm install
 
-npm start
+ * Start the client with: npm start
 
-You can see application running
+# You should now see the application running in your browser
 
-Create a account using signup page ...authorize the email after the signup to signin into the application...
+# Signup and Email Authorization:
+
+ * Create an account using the Signup page by clicking on Start-Now button in the home page.
+
+ * After signing up, you'll receive an email from Supabase to authorize your account.
+
+ *  Once you've authorized the email, you can sign in to the application using your credentials.
