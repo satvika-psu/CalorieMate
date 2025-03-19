@@ -1,14 +1,14 @@
-# CALORIEMATE APP
+#CALORIEMATE APP
 
-# React-Node Project
+#React-Node Project
 
-# Start the Server:
+#Start the Server:
 
  * Open a terminal and cd into the server directory.
 
  * Run the server with node index.js
 
-# Start the Client:
+#Start the Client:
 
  * Open a new terminal and cd into the client directory.
 
@@ -16,9 +16,9 @@
 
  * Start the client with: npm start
 
-# You should now see the application running in your browser
+ * You should now see the application running in your browser
 
-# Signup and Email Authorization:
+#Signup and Email Authorization:
 
  * Create an account using the Signup page by clicking on Start-Now button in the home page.
 
